@@ -1,0 +1,1296 @@
+<!DOCTYPE html>
+<html lang="ru" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, interactive-widget=resizes-content">
+  <meta name="theme-color" media="(prefers-color-scheme: light)" content="#F6F2EB">
+  <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#0A1A12">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <title>MARAFFETT • Центр медицинской и эстетической косметологии в Талдоме</title>
+  <meta name="description" content="Студия медицинской и эстетической косметологии MARAFFETT в Талдоме. Аппаратный SMAS-лифтинг, гидропилинг, чистки лица, биоревитализация, ламинирование. Рейтинг 4.7 на Яндекс Картах. ул. Собцова, 6/1.">
+  
+  <!-- Google Fonts: Playfair Display + Plus Jakarta Sans + Alex Brush for luxury script -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Alex+Brush&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  
+  <!-- Tailwind CSS CDN with custom config matching the exact palette requested -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            // Глубокий зеленый (Forest / Dark Pine) — ОСНОВНОЙ
+            forest: {
+              50: '#F2F6F4',
+              100: '#E2ECE7',
+              200: '#C5D9CE',
+              700: '#1C3A2B',
+              800: '#142E21',
+              900: '#0F241A',
+              950: '#0A1A12',
+            },
+            // Кофейный (Coffee / Dark Mocha / Espresso / Warm Taupe) — ОСНОВНОЙ
+            coffee: {
+              50: '#FAF7F4',
+              100: '#F3EDE6',
+              200: '#E5D9CE',
+              300: '#D2C1B2',
+              400: '#B09885',
+              600: '#7B6454',
+              700: '#5A4639',
+              800: '#3D2D24',
+              900: '#261B14',
+              950: '#18110D',
+            },
+            // Винный (Deep Wine / Bordeaux / Burgundy) — ОСНОВНОЙ
+            wine: {
+              50: '#FAF2F4',
+              100: '#F4E3E7',
+              200: '#E9C4CC',
+              600: '#8A273B',
+              700: '#701D2E',
+              800: '#581423',
+              900: '#410C18',
+              950: '#2C060E',
+            },
+            // Теплый крем для фона как на референсе
+            cream: {
+              base: '#F6F2EB',
+              card: '#FFFFFF',
+              tint: '#EFEBE2',
+              border: '#E5DED3',
+              darkBorder: '#D8CFBF',
+            }
+          },
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+            serif: ['"Playfair Display"', 'Georgia', 'serif'],
+            script: ['"Alex Brush"', 'cursive'],
+          },
+          keyframes: {
+            subtleFloat: {
+              '0%, 100%': { transform: 'translateY(0px)' },
+              '50%': { transform: 'translateY(-6px)' },
+            },
+            spinSlow: {
+              '0%': { transform: 'rotate(0deg)' },
+              '100%': { transform: 'rotate(360deg)' },
+            }
+          },
+          animation: {
+            'float': 'subtleFloat 5s ease-in-out infinite',
+            'spin-slow': 'spinSlow 20s linear infinite',
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Lucide Icons CDN -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <style>
+    /* Architectural placeholder pattern (No photo as explicitly requested) */
+    .ph-canvas {
+      background-color: #EFE9DF;
+      background-image: 
+        radial-gradient(#D5CBBF 1.2px, transparent 1.2px),
+        linear-gradient(135deg, rgba(255,255,255,0.4) 0%, rgba(220,210,195,0.2) 100%);
+      background-size: 20px 20px, 100% 100%;
+    }
+
+    .ph-canvas-dark {
+      background-color: #211712;
+      background-image: radial-gradient(#3A2A22 1px, transparent 1px);
+      background-size: 16px 16px;
+    }
+
+    /* Scroll entrance animations */
+    .reveal {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.7s cubic-bezier(0.23, 1, 0.32, 1), transform 0.7s cubic-bezier(0.23, 1, 0.32, 1);
+      will-change: opacity, transform;
+    }
+
+    .reveal.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .delay-100 { transition-delay: 100ms; }
+    .delay-150 { transition-delay: 150ms; }
+    .delay-200 { transition-delay: 200ms; }
+    .delay-250 { transition-delay: 250ms; }
+    .delay-300 { transition-delay: 300ms; }
+    .delay-350 { transition-delay: 350ms; }
+    .delay-400 { transition-delay: 400ms; }
+
+    @media (prefers-reduced-motion: reduce) {
+      .reveal {
+        opacity: 1 !important;
+        transform: none !important;
+        transition: none !important;
+      }
+    }
+
+    .ph-canvas-emerald {
+      background-color: #0c1e15;
+      background-image: 
+        radial-gradient(#1a3d2b 1.2px, transparent 1.2px),
+        linear-gradient(135deg, rgba(20, 46, 33, 0.7) 0%, rgba(10, 26, 18, 0.9) 100%);
+      background-size: 20px 20px, 100% 100%;
+    }
+
+    /* Service card instant outline on hover (no permanent border in idle) */
+    .service-card {
+      position: relative;
+      border: 2px solid transparent;
+      transition: border-color 0.15s ease, box-shadow 0.2s ease, transform 0.2s ease;
+    }
+    .service-card:hover {
+      border-color: #0A1A12;
+      box-shadow: 0 12px 28px -6px rgba(10, 26, 18, 0.14);
+      transform: translateY(-2px);
+    }
+    .service-card.card-wine:hover {
+      border-color: #701D2E;
+      box-shadow: 0 12px 28px -6px rgba(112, 29, 46, 0.16);
+    }
+
+    /* Dynamic active navigation link underline */
+    .nav-link {
+      position: relative;
+      padding-bottom: 4px;
+      color: #5C4738;
+      transition: color 0.2s ease;
+      cursor: pointer;
+    }
+    .nav-link:hover {
+      color: #0A1A12;
+    }
+    .nav-link.active {
+      color: #0A1A12;
+      font-weight: 700;
+    }
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0%;
+      height: 2px;
+      background-color: #701D2E;
+      transition: width 0.25s cubic-bezier(0.25, 1, 0.5, 1);
+    }
+    .nav-link.active::after {
+      width: 100%;
+    }
+
+    /* Custom smooth scrollbar */
+    ::-webkit-scrollbar {
+      width: 7px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #F6F2EB;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #D2C1B2;
+      border-radius: 9999px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #B09885;
+    }
+
+    /* Mobile Native Refinements */
+    html {
+      -webkit-tap-highlight-color: transparent;
+      -webkit-text-size-adjust: 100%;
+    }
+
+    /* Prevent iOS auto-zoom on inputs */
+    input, textarea, select {
+      font-size: 16px !important;
+    }
+
+    /* Immediate touch feedback & prevent accidental text selection on controls */
+    button, a, [role="button"], .tab, .chip {
+      touch-action: manipulation;
+      user-select: none;
+      -webkit-user-select: none;
+      -webkit-touch-callout: none;
+    }
+
+    /* Safe Area Insets for modern devices with notches/dynamic islands */
+    .safe-top {
+      padding-top: max(1rem, env(safe-area-inset-top));
+    }
+    .safe-bottom {
+      padding-bottom: max(1rem, env(safe-area-inset-bottom));
+    }
+    header#navbar {
+      padding-top: env(safe-area-inset-top, 0px);
+    }
+  </style>
+</head>
+<body class="bg-cream-base text-coffee-950 font-sans antialiased selection:bg-wine-100 selection:text-wine-900">
+
+  <!-- STICKY HEADER (Exact Layout from Reference: Logo | Navigation | Minimalist Book Button) -->
+  <header id="navbar" class="sticky top-0 z-40 bg-cream-base/95 backdrop-blur-md border-b border-cream-border transition-all duration-300">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+      
+      <!-- Brand Logo -->
+      <a href="#" class="flex flex-col group pl-3.5 border-l-2 border-wine-700">
+        <span class="font-serif text-2xl sm:text-[26px] font-semibold tracking-[0.18em] text-forest-950 uppercase leading-none group-hover:text-wine-800 transition-colors">
+          MARAFFETT
+        </span>
+        <span class="text-[9px] tracking-[0.3em] uppercase text-coffee-600 font-medium mt-1">
+          BEAUTY & AESTHETICS • ТАЛДОМ
+        </span>
+      </a>
+
+      <!-- Desktop Navigation Menu -->
+      <nav class="hidden lg:flex items-center gap-7 text-[12px] font-semibold tracking-wider uppercase">
+        <a href="#hero" class="nav-link active">Главная</a>
+        <a href="#services" class="nav-link">Услуги</a>
+        <a href="#about" class="nav-link">О студии</a>
+        <a href="#reviews" class="nav-link">Отзывы</a>
+        <a href="#contacts" class="nav-link">Контакты</a>
+      </nav>
+
+      <!-- Minimalist Action Button -->
+      <div class="flex items-center gap-3">
+        <button onclick="openBookingModal()" class="hidden sm:inline-flex items-center justify-center px-5 sm:px-6 py-2.5 rounded-full border border-forest-950 text-forest-950 hover:bg-forest-950 hover:text-cream-base text-[11px] sm:text-xs font-medium tracking-[0.16em] uppercase transition-all duration-300 active:scale-95">
+          <span>Записаться на приём</span>
+        </button>
+
+        <!-- Mobile Menu Toggle -->
+        <button id="mobileToggle" aria-label="Меню" class="lg:hidden p-2 text-coffee-900 hover:text-forest-900 active:scale-95 transition-transform">
+          <i data-lucide="menu" class="w-6 h-6"></i>
+        </button>
+      </div>
+
+    </div>
+
+    <!-- Mobile Drawer -->
+    <div id="mobileDrawer" class="hidden lg:hidden bg-cream-card border-b border-cream-border px-6 py-6 transition-all">
+      <nav class="flex flex-col gap-4 text-xs font-semibold tracking-wider uppercase text-coffee-900">
+        <a href="#hero" onclick="toggleMobile()" class="mobile-nav-link py-1 text-wine-800 font-bold">Главная</a>
+        <a href="#services" onclick="toggleMobile()" class="mobile-nav-link py-1">Услуги</a>
+        <a href="#about" onclick="toggleMobile()" class="mobile-nav-link py-1">О студии</a>
+        <a href="#reviews" onclick="toggleMobile()" class="mobile-nav-link py-1">Отзывы</a>
+        <a href="#contacts" onclick="toggleMobile()" class="mobile-nav-link py-1">Контакты</a>
+        <div class="pt-4 border-t border-cream-border flex flex-col gap-3">
+          <a href="tel:+79853605055" class="text-xs font-bold text-forest-950 flex items-center gap-2">
+            <i data-lucide="phone" class="w-4 h-4"></i> +7 (985) 360-50-55
+          </a>
+          <button onclick="openBookingModal(); toggleMobile();" class="w-full py-3 rounded-full border border-forest-950 text-forest-950 hover:bg-forest-950 hover:text-white text-xs font-medium tracking-[0.16em] uppercase transition-all duration-300">
+            Записаться онлайн
+          </button>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <!-- HERO SECTION (Deep Forest Green, Minimalist Luxury, Zero Photos) -->
+    <section id="hero" class="relative pt-12 pb-16 lg:pt-20 lg:pb-24 bg-[#0A1A12] text-cream-base border-b border-forest-900/80 overflow-hidden" style="background: radial-gradient(circle at 85% 15%, #142E21 0%, #0A1A12 70%);">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+          
+          <!-- LEFT COLUMN: Typography, Minimalist CTA buttons, 4 Round Badges -->
+          <div class="lg:col-span-7 flex flex-col justify-center reveal">
+            
+            <!-- Eyebrow text -->
+            <div class="text-[11px] sm:text-xs font-semibold tracking-[0.28em] text-amber-200/90 uppercase mb-4">
+              ОМОЛОЖЕНИЕ. СИЯНИЕ. УВЕРЕННОСТЬ.
+            </div>
+
+            <!-- Main Heading with Editorial Left Border -->
+            <div class="pl-4 sm:pl-5 border-l-[3px] border-amber-200/40 mb-6">
+              <h1 class="font-serif text-4xl sm:text-5xl lg:text-6xl xl:text-[64px] font-normal leading-[1.08] text-white tracking-tight">
+                Раскройте Вашу <br>
+                <span class="italic text-amber-100/90 font-serif">Естественную</span> <span class="italic text-wine-300 font-serif">Красоту</span>
+              </h1>
+            </div>
+
+            <!-- Subtitle -->
+            <p class="text-sm sm:text-base text-cream-200/80 font-normal leading-relaxed mb-8 max-w-xl">
+              Передовые эстетические и аппаратные процедуры в Талдоме, созданные врачами-косметологами для укрепления вашей уверенности и восстановления природного сияния кожи.
+            </p>
+
+            <!-- 2 Minimalist Buttons -->
+            <div class="flex flex-wrap items-center gap-4">
+              <!-- Primary Minimalist Pill Button -->
+              <button onclick="openBookingModal()" class="inline-flex items-center justify-center px-8 py-3.5 rounded-full bg-cream-base hover:bg-white text-forest-950 text-xs font-semibold tracking-[0.16em] uppercase transition-all duration-300 hover:shadow-xl hover:-translate-y-0.5 active:translate-y-0">
+                <span>Записаться на приём</span>
+              </button>
+              <!-- Secondary Minimalist Pill Button -->
+              <a href="#services" class="inline-flex items-center justify-center px-8 py-3.5 rounded-full bg-transparent hover:bg-white/10 text-cream-100 hover:text-white text-xs font-medium tracking-[0.16em] uppercase transition-all duration-300 border border-white/20 hover:border-white/40">
+                <span>Каталог услуг</span>
+              </a>
+            </div>
+
+            <!-- 4 Value Props / Features in a Row (Round badges without icons) -->
+            <div class="grid grid-cols-2 sm:grid-cols-4 gap-6 pt-8 mt-12 border-t border-forest-800/80">
+              
+              <!-- 1: Expert Doctors -->
+              <div class="flex flex-col">
+                <div class="w-8 h-8 rounded-full bg-forest-900/90 border border-forest-700/80 text-amber-200/90 flex items-center justify-center mb-2.5 text-[11px] font-semibold tracking-wider">
+                  01
+                </div>
+                <span class="text-[11px] font-bold uppercase tracking-wider text-cream-100 mb-1">
+                  Опытные врачи
+                </span>
+                <span class="text-[11px] text-cream-300/70 leading-snug">
+                  Стаж 10+ лет и диплом дерматологов
+                </span>
+              </div>
+
+              <!-- 2: Premium Care -->
+              <div class="flex flex-col">
+                <div class="w-8 h-8 rounded-full bg-forest-900/90 border border-forest-700/80 text-amber-200/90 flex items-center justify-center mb-2.5 text-[11px] font-semibold tracking-wider">
+                  02
+                </div>
+                <span class="text-[11px] font-bold uppercase tracking-wider text-cream-100 mb-1">
+                  Премиум уход
+                </span>
+                <span class="text-[11px] text-cream-300/70 leading-snug">
+                  Сертифицированные препараты высшего качества
+                </span>
+              </div>
+
+              <!-- 3: Safety & Sterility -->
+              <div class="flex flex-col">
+                <div class="w-8 h-8 rounded-full bg-forest-900/90 border border-forest-700/80 text-amber-200/90 flex items-center justify-center mb-2.5 text-[11px] font-semibold tracking-wider">
+                  03
+                </div>
+                <span class="text-[11px] font-bold uppercase tracking-wider text-cream-100 mb-1">
+                  Стерильность
+                </span>
+                <span class="text-[11px] text-cream-300/70 leading-snug">
+                  100% стерильный медицинский протокол
+                </span>
+              </div>
+
+              <!-- 4: Individual Approach -->
+              <div class="flex flex-col">
+                <div class="w-8 h-8 rounded-full bg-forest-900/90 border border-forest-700/80 text-amber-200/90 flex items-center justify-center mb-2.5 text-[11px] font-semibold tracking-wider">
+                  04
+                </div>
+                <span class="text-[11px] font-bold uppercase tracking-wider text-cream-100 mb-1">
+                  Индивидуально
+                </span>
+                <span class="text-[11px] text-cream-300/70 leading-snug">
+                  Персональный протокол для каждой гостьи
+                </span>
+              </div>
+
+            </div>
+
+          </div>
+
+          <!-- RIGHT COLUMN: Elegant Arched Container (Deep green canvas, NO badge) -->
+          <div class="lg:col-span-5 relative flex justify-center items-center reveal delay-150">
+            
+            <!-- Arched Architectural Container -->
+            <div class="relative w-full max-w-md aspect-[4/5] rounded-t-[14rem] rounded-b-2xl ph-canvas-emerald border border-forest-800/80 shadow-2xl flex flex-col items-center justify-center text-center p-8 overflow-hidden group">
+              
+              <!-- Subtle decorative arch frame inside -->
+              <div class="absolute inset-4 rounded-t-[13rem] rounded-b-xl border border-dashed border-forest-700/40 pointer-events-none"></div>
+
+              <!-- Center Graphic Icon & Placeholder Text -->
+              <div class="w-16 h-16 rounded-full bg-forest-900/90 text-amber-200 shadow-md border border-forest-800 flex items-center justify-center mb-4 transition-transform group-hover:scale-105">
+                <i data-lucide="camera" class="w-7 h-7 text-amber-200"></i>
+              </div>
+
+              <span class="text-xs font-bold uppercase tracking-[0.2em] text-amber-200/90 mb-1">
+                [ Место для фото ]
+              </span>
+              <span class="font-serif text-lg font-medium text-cream-100 italic max-w-[240px] leading-snug mb-3">
+                Атмосфера студии MARAFFETT & Сияние кожи
+              </span>
+              <p class="text-[11px] text-cream-300/70 max-w-[260px] leading-relaxed">
+                Здесь будет размещена вертикальная портретная фотография модели или кабинета с арочным зеркалом
+              </p>
+
+            </div>
+
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION: OUR POPULAR TREATMENTS (Exact Match: 6 Vertical Cards with Circular Badges + Book Now Link) -->
+    <!-- Notice: AS REQUESTED, ZERO PHOTOS. Clean placeholders with distinct procedure labels -->
+    <section id="services" class="py-20 lg:py-28 bg-cream-base border-b border-cream-border">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <!-- Section Title (Exact Reference style: "OUR POPULAR TREATMENTS" centered in Serif) -->
+        <div class="text-center mb-14 sm:mb-16 reveal">
+          <span class="text-[11px] font-bold tracking-[0.25em] text-wine-800 uppercase block mb-2">
+            Выбор наших постоянных гостей
+          </span>
+          <h2 class="font-serif text-3xl sm:text-4xl lg:text-[42px] font-normal tracking-wide text-forest-950 uppercase">
+            НАШИ ПОПУЛЯРНЫЕ ПРОЦЕДУРЫ
+          </h2>
+          <div class="w-12 h-0.5 bg-coffee-300 mx-auto mt-4"></div>
+        </div>
+
+        <!-- Grid of 6 Vertical Cards matching the reference layout exactly -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-6">
+          
+          <!-- Card 1: Hydrafacial / Чистка -->
+          <div class="bg-cream-card rounded-none p-3 flex flex-col justify-between shadow-sm group reveal delay-100 service-card">
+            <div>
+              <!-- Image Placeholder -->
+              <div class="relative w-full aspect-square ph-canvas border border-cream-darkBorder flex flex-col items-center justify-center p-3 text-center mb-4">
+                <i data-lucide="camera" class="w-5 h-5 text-coffee-600 mb-1"></i>
+                <span class="text-[10px] font-bold text-coffee-900 uppercase tracking-wider">[ Фото ]</span>
+                <span class="text-[9px] text-coffee-600 leading-tight mt-0.5">Гидропилинг & Чистка лица</span>
+              </div>
+
+              <div class="text-center px-1">
+                <h3 class="font-bold text-xs uppercase tracking-wider text-forest-950 mb-2">
+                  ГИДРОПИЛИНГ & ЧИСТКА
+                </h3>
+                <p class="text-[11px] text-coffee-600 leading-relaxed mb-4 min-h-[48px]">
+                  Глубокое очищение, мягкая эксфолиация и интенсивное увлажнение для ровного тона.
+                </p>
+              </div>
+            </div>
+
+            <div class="text-center pt-3 border-t border-cream-tint">
+              <span class="text-[10px] uppercase text-coffee-500 font-semibold block mb-0.5">ОТ</span>
+              <span class="font-serif text-base font-bold text-forest-950 mb-2 block">2 900 ₽</span>
+              <button onclick="openBookingModal('Гидропилинг и чистка')" class="text-[11px] font-bold uppercase tracking-widest text-coffee-900 hover:text-wine-800 underline transition-colors">
+                ЗАПИСАТЬСЯ
+              </button>
+            </div>
+          </div>
+
+          <!-- Card 2: Brow Shaping & Tint -->
+          <div class="bg-cream-card rounded-none p-3 flex flex-col justify-between shadow-sm group reveal delay-150 service-card">
+            <div>
+              <!-- Image Placeholder -->
+              <div class="relative w-full aspect-square ph-canvas border border-cream-darkBorder flex flex-col items-center justify-center p-3 text-center mb-4">
+                <i data-lucide="camera" class="w-5 h-5 text-coffee-600 mb-1"></i>
+                <span class="text-[10px] font-bold text-coffee-900 uppercase tracking-wider">[ Фото ]</span>
+                <span class="text-[9px] text-coffee-600 leading-tight mt-0.5">Архитектура & Окрашивание</span>
+              </div>
+
+              <div class="text-center px-1">
+                <h3 class="font-bold text-xs uppercase tracking-wider text-forest-950 mb-2">
+                  АРХИТЕКТУРА & ОКРАШИВАНИЕ БРОВЕЙ
+                </h3>
+                <p class="text-[11px] text-coffee-600 leading-relaxed mb-4 min-h-[48px]">
+                  Идеальная естественная форма бровей, гармонично обрамляющая черты лица.
+                </p>
+              </div>
+            </div>
+
+            <div class="text-center pt-3 border-t border-cream-tint">
+              <span class="text-[10px] uppercase text-coffee-500 font-semibold block mb-0.5">ОТ</span>
+              <span class="font-serif text-base font-bold text-coffee-900 mb-2 block">1 500 ₽</span>
+              <button onclick="openBookingModal('Архитектура бровей')" class="text-[11px] font-bold uppercase tracking-widest text-coffee-900 hover:text-wine-800 underline transition-colors">
+                ЗАПИСАТЬСЯ
+              </button>
+            </div>
+          </div>
+
+          <!-- Card 3: SMAS-Lifting / Dermaplaning spot -->
+          <div class="bg-cream-card rounded-none p-3 flex flex-col justify-between shadow-sm group reveal delay-200 service-card">
+            <div>
+              <!-- Image Placeholder -->
+              <div class="relative w-full aspect-square ph-canvas border border-forest-400 flex flex-col items-center justify-center p-3 text-center mb-4">
+                <span class="absolute top-2 left-2 text-[8px] font-bold uppercase tracking-wider bg-forest-950 text-white px-1.5 py-0.5">
+                  ТОП
+                </span>
+                <i data-lucide="camera" class="w-5 h-5 text-forest-800 mb-1"></i>
+                <span class="text-[10px] font-bold text-forest-950 uppercase tracking-wider">[ Фото ]</span>
+                <span class="text-[9px] text-coffee-600 leading-tight mt-0.5">SMAS-лифтинг Ultraformer</span>
+              </div>
+
+              <div class="text-center px-1">
+                <h3 class="font-bold text-xs uppercase tracking-wider text-forest-950 mb-2">
+                  SMAS-ЛИФТИНГ ULTRAFORMER
+                </h3>
+                <p class="text-[11px] text-coffee-600 leading-relaxed mb-4 min-h-[48px]">
+                  Безоперационная подтяжка каркаса лица с долговременным эффектом до 2 лет.
+                </p>
+              </div>
+            </div>
+
+            <div class="text-center pt-3 border-t border-cream-tint">
+              <span class="text-[10px] uppercase text-coffee-500 font-semibold block mb-0.5">ОТ</span>
+              <span class="font-serif text-base font-bold text-forest-950 mb-2 block">14 000 ₽</span>
+              <button onclick="openBookingModal('SMAS-лифтинг')" class="text-[11px] font-bold uppercase tracking-widest text-forest-950 hover:text-wine-800 underline transition-colors">
+                ЗАПИСАТЬСЯ
+              </button>
+            </div>
+          </div>
+
+          <!-- Card 4: Lip Filler / Bio -->
+          <div class="bg-cream-card rounded-none p-3 flex flex-col justify-between shadow-sm group reveal delay-250 service-card card-wine">
+            <div>
+              <!-- Image Placeholder -->
+              <div class="relative w-full aspect-square ph-canvas border border-cream-darkBorder flex flex-col items-center justify-center p-3 text-center mb-4">
+                <i data-lucide="camera" class="w-5 h-5 text-coffee-600 mb-1"></i>
+                <span class="text-[10px] font-bold text-coffee-900 uppercase tracking-wider">[ Фото ]</span>
+                <span class="text-[9px] text-coffee-600 leading-tight mt-0.5">Биоревитализация & Губы</span>
+              </div>
+
+              <div class="text-center px-1">
+                <h3 class="font-bold text-xs uppercase tracking-wider text-forest-950 mb-2">
+                  БИОРЕВИТАЛИЗАЦИЯ & ГИАЛУРОН
+                </h3>
+                <p class="text-[11px] text-coffee-600 leading-relaxed mb-4 min-h-[48px]">
+                  Увлажнение дермы, разглаживание морщинок и деликатное восстановление контура.
+                </p>
+              </div>
+            </div>
+
+            <div class="text-center pt-3 border-t border-cream-tint">
+              <span class="text-[10px] uppercase text-coffee-500 font-semibold block mb-0.5">ОТ</span>
+              <span class="font-serif text-base font-bold text-wine-800 mb-2 block">6 500 ₽</span>
+              <button onclick="openBookingModal('Биоревитализация')" class="text-[11px] font-bold uppercase tracking-widest text-wine-900 hover:text-wine-700 underline transition-colors">
+                ЗАПИСАТЬСЯ
+              </button>
+            </div>
+          </div>
+
+          <!-- Card 5: Laser / Hardware Body & Face -->
+          <div class="bg-cream-card rounded-none p-3 flex flex-col justify-between shadow-sm group reveal delay-300 service-card">
+            <div>
+              <!-- Image Placeholder -->
+              <div class="relative w-full aspect-square ph-canvas border border-cream-darkBorder flex flex-col items-center justify-center p-3 text-center mb-4">
+                <i data-lucide="camera" class="w-5 h-5 text-coffee-600 mb-1"></i>
+                <span class="text-[10px] font-bold text-coffee-900 uppercase tracking-wider">[ Фото ]</span>
+                <span class="text-[9px] text-coffee-600 leading-tight mt-0.5">RF-лифтинг & Микротоки</span>
+              </div>
+
+              <div class="text-center px-1">
+                <h3 class="font-bold text-xs uppercase tracking-wider text-forest-950 mb-2">
+                  RF-ЛИФТИНГ & МИКРОТОКИ
+                </h3>
+                <p class="text-[11px] text-coffee-600 leading-relaxed mb-4 min-h-[48px]">
+                  Стимуляция синтеза неоколлагена, снятие мышечных зажимов и подтяжка овала.
+                </p>
+              </div>
+            </div>
+
+            <div class="text-center pt-3 border-t border-cream-tint">
+              <span class="text-[10px] uppercase text-coffee-500 font-semibold block mb-0.5">ОТ</span>
+              <span class="font-serif text-base font-bold text-forest-950 mb-2 block">3 200 ₽</span>
+              <button onclick="openBookingModal('RF-лифтинг')" class="text-[11px] font-bold uppercase tracking-widest text-coffee-900 hover:text-wine-800 underline transition-colors">
+                ЗАПИСАТЬСЯ
+              </button>
+            </div>
+          </div>
+
+          <!-- Card 6: Lash Extensions / Lamination -->
+          <div class="bg-cream-card rounded-none p-3 flex flex-col justify-between shadow-sm group reveal delay-350 service-card">
+            <div>
+              <!-- Image Placeholder -->
+              <div class="relative w-full aspect-square ph-canvas border border-cream-darkBorder flex flex-col items-center justify-center p-3 text-center mb-4">
+                <i data-lucide="camera" class="w-5 h-5 text-coffee-600 mb-1"></i>
+                <span class="text-[10px] font-bold text-coffee-900 uppercase tracking-wider">[ Фото ]</span>
+                <span class="text-[9px] text-coffee-600 leading-tight mt-0.5">Ламинирование ресниц</span>
+              </div>
+
+              <div class="text-center px-1">
+                <h3 class="font-bold text-xs uppercase tracking-wider text-forest-950 mb-2">
+                  ЛАМИНИРОВАНИЕ РЕСНИЦ
+                </h3>
+                <p class="text-[11px] text-coffee-600 leading-relaxed mb-4 min-h-[48px]">
+                  Натуральный изящный завиток, глубокое кератиновое питание и стойкий цвет.
+                </p>
+              </div>
+            </div>
+
+            <div class="text-center pt-3 border-t border-cream-tint">
+              <span class="text-[10px] uppercase text-coffee-500 font-semibold block mb-0.5">ОТ</span>
+              <span class="font-serif text-base font-bold text-coffee-900 mb-2 block">2 200 ₽</span>
+              <button onclick="openBookingModal('Ламинирование ресниц')" class="text-[11px] font-bold uppercase tracking-widest text-coffee-900 hover:text-wine-800 underline transition-colors">
+                ЗАПИСАТЬСЯ
+              </button>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Center View All Services Button (Minimalist Pill) -->
+        <div class="mt-14 text-center reveal delay-200">
+          <button onclick="openBookingModal()" class="inline-flex items-center justify-center px-8 py-3.5 rounded-full border border-forest-950 text-forest-950 hover:bg-forest-950 hover:text-white text-xs font-medium tracking-[0.16em] uppercase transition-all duration-300">
+            Смотреть все услуги и цены
+          </button>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- SECTION: ABOUT US / WELCOME TO MARAFFETT (Exact Reference Match: Left Script + Text + Button, Right Interior Placeholder) -->
+    <!-- Notice: AS REQUESTED, ZERO PHOTOS. Clean stylized architectural placeholder with reception details -->
+    <section id="about" class="py-20 lg:py-28 bg-cream-base border-b border-cream-border">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+          
+          <!-- LEFT COLUMN: Script title, Heading, Description, Learn More Button (Exact Reference Match) -->
+          <div class="lg:col-span-5 flex flex-col justify-center reveal">
+            
+            <!-- Script accent (Reference: "Welcome to Luxe") -->
+            <div class="font-script text-3xl sm:text-4xl text-wine-700 mb-1">
+              Добро пожаловать в Maraffett
+            </div>
+
+            <!-- Heading (Reference: "ABOUT US" in Serif) -->
+            <h2 class="font-serif text-3xl sm:text-4xl lg:text-[40px] font-normal tracking-wide text-forest-950 uppercase mb-6 pb-2 border-b border-wine-300 w-fit">
+              О НАШЕЙ СТУДИИ
+            </h2>
+
+            <p class="text-sm text-coffee-700 leading-relaxed mb-4">
+              В студии медицинской и эстетической косметологии MARAFFETT мы предлагаем широкий выбор передовых процедур в расслабляющей и приватной обстановке в самом центре Талдома.
+            </p>
+            <p class="text-sm text-coffee-700 leading-relaxed">
+              Наша миссия — помочь вам почувствовать себя в наилучшей форме благодаря персонализированному уходу, доказанным протоколам и вниманию к здоровью вашей кожи. Ведущий эксперт Ольга и команда дипломированных специалистов регулярно подтверждают квалификацию и ведут обучение мастеров.
+            </p>
+
+          </div>
+
+          <!-- RIGHT COLUMN: Landscape Interior Placeholder (Matching Reference's Reception Photo) -->
+          <div class="lg:col-span-7 reveal delay-150">
+            <div class="w-full aspect-[16/10] rounded-none ph-canvas border-2 border-cream-darkBorder shadow-xl flex flex-col items-center justify-center p-8 text-center relative group">
+              
+              <div class="w-16 h-16 rounded-full bg-cream-card text-coffee-800 shadow-md border border-cream-border flex items-center justify-center mb-3">
+                <i data-lucide="building-2" class="w-7 h-7 text-forest-900"></i>
+              </div>
+
+              <span class="text-xs font-bold uppercase tracking-[0.2em] text-forest-950 mb-1">
+                [ Место для фото интерьера ]
+              </span>
+              <span class="font-serif text-lg font-medium text-coffee-800 italic max-w-sm mb-2">
+                Ресепшн и процедурные кабинеты MARAFFETT
+              </span>
+              <p class="text-[11px] text-coffee-600 max-w-md leading-relaxed">
+                Здесь будет размещена широкоформатная фотография интерьера студии на ул. Собцова, 6/1: светлый мрамор, уютная зона ожидания с натуральным зерновым кофе
+              </p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION: DARK GREEN STATS / TRUST BANNER (Exact Match with Reference's Deep Green Bar with 5 Stats) -->
+    <section class="py-10 lg:py-12 bg-forest-900 text-cream-base border-t-2 border-wine-700 border-b border-forest-800">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid grid-cols-2 md:grid-cols-5 gap-8 items-center text-center">
+          
+          <!-- Stat 1: 10+ Years Experience -->
+          <div class="flex flex-col items-center reveal delay-100">
+            <div class="mb-2 text-amber-200/90">
+              <i data-lucide="star" class="w-6 h-6 stroke-[1.5]"></i>
+            </div>
+            <span class="font-serif text-2xl font-bold tracking-tight text-white mb-0.5">10+ ЛЕТ</span>
+            <span class="text-[10px] uppercase tracking-widest text-cream-200/80 font-medium">Опыта специалистов</span>
+          </div>
+
+          <!-- Stat 2: Happy Clients -->
+          <div class="flex flex-col items-center reveal delay-150">
+            <div class="mb-2 text-amber-200/90">
+              <i data-lucide="users" class="w-6 h-6 stroke-[1.5]"></i>
+            </div>
+            <span class="font-serif text-2xl font-bold tracking-tight text-white mb-0.5">2 500+</span>
+            <span class="text-[10px] uppercase tracking-widest text-cream-200/80 font-medium">Довольных пациентов</span>
+          </div>
+
+          <!-- Stat 3: Advanced Technology -->
+          <div class="flex flex-col items-center reveal delay-200">
+            <div class="mb-2 text-amber-200/90">
+              <i data-lucide="cpu" class="w-6 h-6 stroke-[1.5]"></i>
+            </div>
+            <span class="font-serif text-2xl font-bold tracking-tight text-white mb-0.5">SMAS & RF</span>
+            <span class="text-[10px] uppercase tracking-widest text-cream-200/80 font-medium">Передовые технологии</span>
+          </div>
+
+          <!-- Stat 4: 5 Star Rated -->
+          <div class="flex flex-col items-center reveal delay-250">
+            <div class="mb-2 text-amber-200/90">
+              <i data-lucide="award" class="w-6 h-6 stroke-[1.5]"></i>
+            </div>
+            <span class="font-serif text-2xl font-bold tracking-tight text-white mb-0.5">4.7 ИЗ 5</span>
+            <span class="text-[10px] uppercase tracking-widest text-cream-200/80 font-medium">Рейтинг Яндекс Карт</span>
+          </div>
+
+          <!-- Stat 5: Safe & Professional -->
+          <div class="flex flex-col items-center col-span-2 md:col-span-1 reveal delay-300">
+            <div class="mb-2 text-amber-200/90">
+              <i data-lucide="shield-check" class="w-6 h-6 stroke-[1.5]"></i>
+            </div>
+            <span class="font-serif text-2xl font-bold tracking-tight text-white mb-0.5">САНПИН 100%</span>
+            <span class="text-[10px] uppercase tracking-widest text-cream-200/80 font-medium">Безопасность & Лицензия</span>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION: REAL CUSTOMER REVIEWS (From Maraffett Yandex Maps) -->
+    <section id="reviews" class="py-20 lg:py-24 bg-cream-base border-b border-cream-border">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <div class="text-center mb-14 reveal">
+          <span class="text-[11px] font-bold tracking-[0.25em] text-wine-800 uppercase block mb-2">
+            Реальные отзывы гостей
+          </span>
+          <h2 class="font-serif text-3xl sm:text-4xl font-normal text-forest-950 uppercase tracking-wide">
+            ЧТО ГОВОРЯТ О MARAFFETT
+          </h2>
+          <div class="w-12 h-0.5 bg-coffee-300 mx-auto mt-4"></div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+          
+          <!-- Review 1: IVANOVNA -->
+          <div class="bg-cream-card p-8 border border-cream-border border-t-[3px] border-t-forest-800 flex flex-col justify-between shadow-sm reveal delay-100">
+            <div>
+              <div class="flex items-center gap-1 text-amber-500 mb-4">
+                <i data-lucide="star" class="w-4 h-4 fill-amber-500"></i>
+                <i data-lucide="star" class="w-4 h-4 fill-amber-500"></i>
+                <i data-lucide="star" class="w-4 h-4 fill-amber-500"></i>
+                <i data-lucide="star" class="w-4 h-4 fill-amber-500"></i>
+                <i data-lucide="star" class="w-4 h-4 fill-amber-500"></i>
+              </div>
+              <p class="text-xs sm:text-sm text-coffee-800 leading-relaxed italic mb-6">
+                «Это чудесный сеанс! После сеанса ушло напряжение, которое копилось месяцами. Мышцы лица расслабились. Очень приятные впечатления от работы мастера и самой процедуры. Овал лица стал заметно лучше, кожа подтянулась. Ольга, большое спасибо! Рекомендую!»
+              </p>
+            </div>
+            <div class="pt-4 border-t border-cream-tint flex items-center justify-between">
+              <div>
+                <span class="font-bold text-xs uppercase text-coffee-950 block">IVANOVNA 🍒</span>
+                <span class="text-[10px] text-coffee-500">Знаток города 3 уровня</span>
+              </div>
+              <span class="text-[10px] font-semibold text-emerald-800 bg-forest-50 px-2 py-0.5 border border-forest-100">
+                Яндекс Карты
+              </span>
+            </div>
+          </div>
+
+          <!-- Review 2: Светлана Ф. -->
+          <div class="bg-cream-card p-8 border border-cream-border border-t-[3px] border-t-wine-700 flex flex-col justify-between shadow-sm reveal delay-200">
+            <div>
+              <div class="flex items-center gap-1 text-amber-500 mb-4">
+                <i data-lucide="star" class="w-4 h-4 fill-amber-500"></i>
+                <i data-lucide="star" class="w-4 h-4 fill-amber-500"></i>
+                <i data-lucide="star" class="w-4 h-4 fill-amber-500"></i>
+                <i data-lucide="star" class="w-4 h-4 fill-amber-500"></i>
+                <i data-lucide="star" class="w-4 h-4 fill-amber-500"></i>
+              </div>
+              <p class="text-xs sm:text-sm text-coffee-800 leading-relaxed italic mb-6">
+                «Прошла курсы по ламинированию бровей и ресниц. Оля прекрасна не только как профессионал, но и просто замечательный человек! Подробно объясняет весь процесс, создает комфортные условия, подсказывает с какими материалами работать лучше и не жалеет времени. Спасибо огромное!»
+              </p>
+            </div>
+            <div class="pt-4 border-t border-cream-tint flex items-center justify-between">
+              <div>
+                <span class="font-bold text-xs uppercase text-coffee-950 block">Светлана Ф.</span>
+                <span class="text-[10px] text-coffee-500">Обучение у Ольги</span>
+              </div>
+              <span class="text-[10px] font-semibold text-wine-800 bg-wine-50 px-2 py-0.5 border border-wine-100">
+                Яндекс Карты
+              </span>
+            </div>
+          </div>
+
+          <!-- Review 3: Наташа Каменская -->
+          <div class="bg-cream-card p-8 border border-cream-border border-t-[3px] border-t-coffee-600 flex flex-col justify-between shadow-sm reveal delay-300">
+            <div>
+              <div class="flex items-center gap-1 text-amber-500 mb-4">
+                <i data-lucide="star" class="w-4 h-4 fill-amber-500"></i>
+                <i data-lucide="star" class="w-4 h-4 fill-amber-500"></i>
+                <i data-lucide="star" class="w-4 h-4 fill-amber-500"></i>
+                <i data-lucide="star" class="w-4 h-4 fill-amber-500"></i>
+                <i data-lucide="star" class="w-4 h-4 fill-amber-500"></i>
+              </div>
+              <p class="text-xs sm:text-sm text-coffee-800 leading-relaxed italic mb-6">
+                «С Ольгой знакома не так давно, но уже побывала на ряде процедур и осталась очень довольна! Профессиональный подход к делу, видна искренняя заинтересованность в конечном результате. Всё подробно объясняет и даёт ценные советы. Я Ваш постоянный клиент 🙂»
+              </p>
+            </div>
+            <div class="pt-4 border-t border-cream-tint flex items-center justify-between">
+              <div>
+                <span class="font-bold text-xs uppercase text-coffee-950 block">Наташа Каменская</span>
+                <span class="text-[10px] text-coffee-500">Постоянный гость</span>
+              </div>
+              <span class="text-[10px] font-semibold text-coffee-800 bg-coffee-50 px-2 py-0.5 border border-coffee-200">
+                Яндекс Карты
+              </span>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- SECTION: LOCATION & CONTACTS -->
+    <section id="contacts" class="py-16 lg:py-24 bg-cream-base border-b border-cream-border">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+          
+          <div class="lg:col-span-5 reveal">
+            <span class="text-[11px] font-bold tracking-[0.25em] text-wine-800 uppercase block mb-2">
+              Локация и контакты
+            </span>
+            <h2 class="font-serif text-3xl sm:text-4xl font-normal text-forest-950 uppercase tracking-wide mb-6">
+              КАК НАС НАЙТИ
+            </h2>
+            
+            <div class="space-y-4 mb-8">
+              <div class="flex items-start gap-3 pl-3.5 border-l-2 border-forest-800">
+                <i data-lucide="map-pin" class="w-5 h-5 text-forest-900 shrink-0 mt-0.5"></i>
+                <div>
+                  <div class="text-xs font-bold uppercase text-coffee-950">Адрес студии:</div>
+                  <div class="text-sm text-coffee-800">Московская обл., г. Талдом, ул. Собцова, 6/1</div>
+                  <div class="text-[11px] text-coffee-600 mt-0.5">Собственная бесплатная парковка перед входом</div>
+                </div>
+              </div>
+
+              <div class="flex items-start gap-3 pl-3.5 border-l-2 border-wine-700">
+                <i data-lucide="phone" class="w-5 h-5 text-wine-800 shrink-0 mt-0.5"></i>
+                <div>
+                  <div class="text-xs font-bold uppercase text-coffee-950">Телефон и запись:</div>
+                  <a href="tel:+79853605055" class="text-sm font-bold text-wine-900 hover:text-forest-900 transition-colors">
+                    +7 (985) 360-50-55
+                  </a>
+                  <div class="text-[11px] text-coffee-600 mt-0.5">WhatsApp / Telegram доступны круглосуточно</div>
+                </div>
+              </div>
+
+              <div class="flex items-start gap-3 pl-3.5 border-l-2 border-coffee-500">
+                <i data-lucide="clock" class="w-5 h-5 text-coffee-700 shrink-0 mt-0.5"></i>
+                <div>
+                  <div class="text-xs font-bold uppercase text-coffee-950">Часы работы:</div>
+                  <div class="text-sm text-coffee-800">Пн – Вс: 09:00 – 21:00</div>
+                  <div class="text-[11px] text-coffee-600 mt-0.5">Приём строго по предварительной записи</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="flex gap-3">
+              <button onclick="openBookingModal()" class="inline-flex items-center justify-center px-7 py-3 rounded-full border border-forest-950 text-forest-950 hover:bg-forest-950 hover:text-white text-xs font-medium tracking-[0.16em] uppercase transition-all duration-300">
+                Записаться онлайн
+              </button>
+              <a href="https://t.me/+79853605055" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-full border border-coffee-400 text-coffee-950 hover:bg-coffee-100 text-xs font-medium tracking-[0.16em] uppercase transition-all duration-300">
+                <i data-lucide="send" class="w-4 h-4"></i> Telegram
+              </a>
+            </div>
+          </div>
+
+          <!-- Yandex Map Widget -->
+          <div class="lg:col-span-7 reveal delay-150">
+            <div class="w-full h-[380px] border-2 border-cream-darkBorder bg-cream-card shadow-md relative overflow-hidden">
+              <iframe 
+                src="https://yandex.ru/map-widget/v1/?ll=37.529331%2C56.729339&z=16&pt=37.529331,56.729339,pm2wtm" 
+                width="100%" 
+                height="100%" 
+                frameborder="0" 
+                allowfullscreen="true"
+                title="Студия MARAFFETT на Яндекс Картах"
+                class="w-full h-full filter saturate-[0.9]"
+              ></iframe>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+  </main>
+
+  <!-- FOOTER (Exact Match with Reference: 5 Columns, Social Links, Stay Connected Form, Cards Payment Strip) -->
+  <footer class="bg-coffee-950 text-cream-300 pt-16 pb-12 border-t-2 border-forest-700 text-xs">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <!-- Top 5 Columns -->
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10 pb-14 border-b border-coffee-900">
+        
+        <!-- Col 1: Brand & Bio (Exact Reference layout) -->
+        <div class="lg:col-span-3">
+          <div class="font-serif text-2xl font-semibold tracking-[0.18em] text-white uppercase mb-2">
+            MARAFFETT
+          </div>
+          <div class="text-[9px] tracking-[0.3em] uppercase text-amber-200/80 font-medium mb-4">
+            BEAUTY & AESTHETICS
+          </div>
+          <p class="text-[11px] text-cream-400 leading-relaxed mb-6">
+            Раскрываем вашу естественную красоту с помощью передовых протоколов и исключительной заботы.
+          </p>
+
+          <!-- Social Icons (Reference Match: Instagram, Facebook, TikTok, WhatsApp, Map) -->
+          <div class="flex items-center gap-3">
+            <a href="https://t.me/+79853605055" target="_blank" rel="noopener noreferrer" class="w-8 h-8 rounded-full bg-coffee-900 hover:bg-forest-900 text-cream-base flex items-center justify-center transition-colors">
+              <i data-lucide="send" class="w-4 h-4"></i>
+            </a>
+            <a href="https://wa.me/79853605055" target="_blank" rel="noopener noreferrer" class="w-8 h-8 rounded-full bg-coffee-900 hover:bg-emerald-900 text-cream-base flex items-center justify-center transition-colors">
+              <i data-lucide="message-circle" class="w-4 h-4"></i>
+            </a>
+            <a href="https://yandex.ru/maps/org/maraffett/174213422356/" target="_blank" rel="noopener noreferrer" class="w-8 h-8 rounded-full bg-coffee-900 hover:bg-wine-900 text-cream-base flex items-center justify-center transition-colors">
+              <i data-lucide="map-pin" class="w-4 h-4"></i>
+            </a>
+          </div>
+        </div>
+
+        <!-- Col 2: Quick Links (Reference Match) -->
+        <div class="lg:col-span-2">
+          <span class="text-xs font-bold uppercase tracking-widest text-white block mb-4">
+            Быстрые ссылки
+          </span>
+          <ul class="space-y-2 text-[11px] text-cream-400">
+            <li><a href="#" class="hover:text-white transition-colors">Главная</a></li>
+            <li><a href="#about" class="hover:text-white transition-colors">О студии</a></li>
+            <li><a href="#services" class="hover:text-white transition-colors">Услуги</a></li>
+            <li><a href="#services" class="hover:text-white transition-colors">Цены</a></li>
+            <li><a href="#reviews" class="hover:text-white transition-colors">Отзывы</a></li>
+            <li><a href="#contacts" class="hover:text-white transition-colors">Контакты</a></li>
+          </ul>
+        </div>
+
+        <!-- Col 3: Our Services (Reference Match) -->
+        <div class="lg:col-span-2">
+          <span class="text-xs font-bold uppercase tracking-widest text-white block mb-4">
+            Наши услуги
+          </span>
+          <ul class="space-y-2 text-[11px] text-cream-400">
+            <li><a href="#services" class="hover:text-white transition-colors">SMAS-лифтинг</a></li>
+            <li><a href="#services" class="hover:text-white transition-colors">Гидропилинг</a></li>
+            <li><a href="#services" class="hover:text-white transition-colors">Биоревитализация</a></li>
+            <li><a href="#services" class="hover:text-white transition-colors">RF-омоложение</a></li>
+            <li><a href="#services" class="hover:text-white transition-colors">Брови & Ресницы</a></li>
+            <li><a href="#services" class="hover:text-white transition-colors">Уход за телом</a></li>
+          </ul>
+        </div>
+
+        <!-- Col 4: Contact Us (Reference Match) -->
+        <div class="lg:col-span-2">
+          <span class="text-xs font-bold uppercase tracking-widest text-white block mb-4">
+            Контакты
+          </span>
+          <ul class="space-y-3 text-[11px] text-cream-400">
+            <li class="flex items-center gap-2">
+              <i data-lucide="phone" class="w-3.5 h-3.5 text-amber-200/80 shrink-0"></i>
+              <a href="tel:+79853605055" class="hover:text-white transition-colors">+7 (985) 360-50-55</a>
+            </li>
+            <li class="flex items-center gap-2">
+              <i data-lucide="mail" class="w-3.5 h-3.5 text-amber-200/80 shrink-0"></i>
+              <span>info@maraffett.ru</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <i data-lucide="map-pin" class="w-3.5 h-3.5 text-amber-200/80 shrink-0 mt-0.5"></i>
+              <span>г. Талдом, ул. Собцова, 6/1</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <i data-lucide="clock" class="w-3.5 h-3.5 text-amber-200/80 shrink-0 mt-0.5"></i>
+              <span>Пн – Вс: 09:00 – 21:00</span>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Col 5: Stay Connected (Exact Reference Match: Input + Subscribe Button) -->
+        <div class="lg:col-span-3">
+          <span class="text-xs font-bold uppercase tracking-widest text-white block mb-4">
+            Оставайтесь на связи
+          </span>
+          <p class="text-[11px] text-cream-400 mb-4">
+            Получайте персональные предложения, анонсы акций и бьюти-советы от наших врачей.
+          </p>
+
+          <form onsubmit="handleSubscribe(event)" class="space-y-2">
+            <input 
+              type="text" 
+              required 
+              placeholder="Ваш номер телефона или email"
+              class="w-full px-3.5 py-2.5 rounded-none bg-coffee-900 border border-coffee-800 text-cream-100 placeholder-coffee-400 text-xs focus:outline-none focus:border-amber-200"
+            >
+            <!-- Wine Subscribe button -->
+            <button type="submit" class="w-full py-2.5 bg-wine-700 hover:bg-wine-600 text-white font-bold text-xs uppercase tracking-widest transition-colors shadow-sm">
+              ПОДПИСАТЬСЯ
+            </button>
+          </form>
+        </div>
+
+      </div>
+
+      <!-- Bottom Bar: Copyright, Legal Links, Payment Icons (Exact Reference Match) -->
+      <div class="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-[10px] text-cream-400">
+        <div>
+          © 2026 Студия косметологии MARAFFETT. Все права защищены.
+        </div>
+
+        <div class="flex items-center gap-6">
+          <a href="#" class="hover:text-white transition-colors">Политика конфиденциальности</a>
+          <a href="#" class="hover:text-white transition-colors">Договор оферты</a>
+        </div>
+      </div>
+
+    </div>
+  </footer>
+
+  <!-- INTERACTIVE APPOINTMENT MODAL -->
+  <div id="bookingModal" class="fixed inset-0 z-50 hidden flex items-center justify-center p-3 sm:p-4 overflow-y-auto">
+    <div class="fixed inset-0 bg-forest-950/80 backdrop-blur-sm" onclick="closeBookingModal()"></div>
+    
+    <div class="relative bg-cream-card rounded-none max-w-lg w-full p-6 sm:p-8 border-2 border-cream-darkBorder shadow-2xl z-10 max-h-[92vh] overflow-y-auto my-auto">
+      
+      <button onclick="closeBookingModal()" class="absolute top-4 right-4 sm:top-5 sm:right-5 w-8 h-8 rounded-full bg-cream-tint hover:bg-cream-border text-coffee-800 flex items-center justify-center transition-colors">
+        <i data-lucide="x" class="w-4 h-4"></i>
+      </button>
+
+      <div class="mb-6">
+        <span class="text-[10px] font-bold tracking-[0.25em] text-wine-800 uppercase block mb-1">
+          Онлайн-бронирование визита
+        </span>
+        <h3 class="font-serif text-2xl sm:text-3xl font-medium text-forest-950">
+          Запись в MARAFFETT
+        </h3>
+        <p class="text-xs text-coffee-600 mt-1">
+          Администратор перезвонит вам в течение 5 минут для подтверждения времени
+        </p>
+      </div>
+
+      <form onsubmit="handleBooking(event)" class="space-y-4 text-xs">
+        <div>
+          <label class="block font-bold uppercase text-coffee-800 mb-1">Ваше имя *</label>
+          <input 
+            type="text" 
+            required 
+            placeholder="Например, Анна" 
+            class="w-full p-3 bg-cream-base border border-cream-border text-coffee-950 text-xs focus:outline-none focus:border-forest-900"
+          >
+        </div>
+
+        <div>
+          <label class="block font-bold uppercase text-coffee-800 mb-1">Номер телефона *</label>
+          <input 
+            type="tel" 
+            required 
+            value="+7 (9" 
+            placeholder="+7 (___) ___-__-__" 
+            class="w-full p-3 bg-cream-base border border-cream-border text-coffee-950 font-mono text-xs focus:outline-none focus:border-forest-900"
+          >
+        </div>
+
+        <div>
+          <label class="block font-bold uppercase text-coffee-800 mb-1">Интересующая услуга</label>
+          <select id="modalServiceSelect" class="w-full p-3 bg-cream-base border border-cream-border text-coffee-950 text-xs focus:outline-none focus:border-forest-900">
+            <option value="Консультация врача-дерматолога">Консультация врача-дерматолога</option>
+            <option value="SMAS-лифтинг Ultraformer">SMAS-лифтинг Ultraformer</option>
+            <option value="Гидропилинг и чистка лица">Гидропилинг и чистка лица</option>
+            <option value="Биоревитализация">Инъекционная биоревитализация</option>
+            <option value="RF-лифтинг и микротоки">RF-лифтинг и микротоки</option>
+            <option value="Архитектура и окрашивание бровей">Архитектура и окрашивание бровей</option>
+            <option value="Ламинирование ресниц">Ламинирование ресниц</option>
+            <option value="Другая процедура">Другая процедура / Уточнить у врача</option>
+          </select>
+        </div>
+
+        <div class="grid grid-cols-2 gap-3">
+          <div>
+            <label class="block font-bold uppercase text-coffee-800 mb-1">Желаемая дата</label>
+            <input type="date" class="w-full p-2.5 bg-cream-base border border-cream-border text-coffee-950 text-xs">
+          </div>
+          <div>
+            <label class="block font-bold uppercase text-coffee-800 mb-1">Время</label>
+            <select class="w-full p-2.5 bg-cream-base border border-cream-border text-coffee-950 text-xs">
+              <option>Утро (09:00 - 13:00)</option>
+              <option>День (13:00 - 17:00)</option>
+              <option>Вечер (17:00 - 21:00)</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="pt-2">
+          <button type="submit" class="w-full py-3.5 rounded-full bg-forest-950 hover:bg-forest-900 text-cream-base font-semibold text-xs tracking-[0.16em] uppercase transition-all duration-300 shadow-md active:scale-95">
+            Подтвердить запись
+          </button>
+        </div>
+      </form>
+
+    </div>
+  </div>
+
+  <!-- TOAST NOTIFICATION -->
+  <div id="toast" class="fixed bottom-6 right-6 z-50 hidden bg-forest-950 text-cream-base px-6 py-4 rounded-none shadow-2xl border border-forest-800 flex items-center gap-3">
+    <div class="w-7 h-7 rounded-full bg-emerald-500 text-forest-950 flex items-center justify-center font-bold text-xs">
+      ✓
+    </div>
+    <div>
+      <div class="text-xs font-bold uppercase tracking-wider">Заявка принята!</div>
+      <div class="text-[11px] text-cream-300">Администратор студии MARAFFETT свяжется с вами.</div>
+    </div>
+  </div>
+
+  <!-- JAVASCRIPT LOGIC -->
+  <script>
+    // Init icons
+    lucide.createIcons();
+
+    // Scroll Reveal Animations via IntersectionObserver
+    function initReveal() {
+      const observerOptions = {
+        root: null,
+        rootMargin: '0px 0px -40px 0px',
+        threshold: 0.08
+      };
+
+      const revealObserver = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, observerOptions);
+
+      document.querySelectorAll('.reveal').forEach(el => {
+        revealObserver.observe(el);
+      });
+    }
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', initReveal);
+    } else {
+      initReveal();
+    }
+
+    // Mobile nav
+    function toggleMobile() {
+      const drawer = document.getElementById('mobileDrawer');
+      drawer.classList.toggle('hidden');
+    }
+    document.getElementById('mobileToggle').addEventListener('click', toggleMobile);
+
+    // Modal
+    const modal = document.getElementById('bookingModal');
+    const serviceSelect = document.getElementById('modalServiceSelect');
+
+    function openBookingModal(serviceName = null) {
+      if (serviceName && serviceSelect) {
+        for (let i = 0; i < serviceSelect.options.length; i++) {
+          if (serviceSelect.options[i].text.includes(serviceName) || serviceSelect.options[i].value.includes(serviceName)) {
+            serviceSelect.selectedIndex = i;
+            break;
+          }
+        }
+      }
+      modal.classList.remove('hidden');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeBookingModal() {
+      modal.classList.add('hidden');
+      document.body.style.overflow = '';
+    }
+
+    function handleBooking(e) {
+      e.preventDefault();
+      closeBookingModal();
+      showToast('Заявка успешно отправлена!');
+      e.target.reset();
+    }
+
+    function handleSubscribe(e) {
+      e.preventDefault();
+      showToast('Вы успешно подписались на рассылку!');
+      e.target.reset();
+    }
+
+    function showToast(msg) {
+      const toast = document.getElementById('toast');
+      toast.classList.remove('hidden');
+      setTimeout(() => {
+        toast.classList.add('hidden');
+      }, 4000);
+    }
+
+    // Dynamic Active Nav Scrollspy & Smooth Scroll
+    const navSectionList = ['hero', 'services', 'about', 'reviews', 'contacts'];
+
+    function updateActiveNavIndicator() {
+      const scrollY = window.pageYOffset || document.documentElement.scrollTop;
+      const headerOffset = 120;
+
+      let currentActiveId = 'hero';
+
+      if ((window.innerHeight + scrollY) >= document.documentElement.scrollHeight - 60) {
+        currentActiveId = 'contacts';
+      } else {
+        for (let i = navSectionList.length - 1; i >= 0; i--) {
+          const sec = document.getElementById(navSectionList[i]);
+          if (sec) {
+            const rect = sec.getBoundingClientRect();
+            if (rect.top <= headerOffset) {
+              currentActiveId = navSectionList[i];
+              break;
+            }
+          }
+        }
+      }
+
+      // Update desktop nav link underline
+      document.querySelectorAll('.nav-link').forEach(link => {
+        const href = link.getAttribute('href');
+        if (href === `#${currentActiveId}` || (currentActiveId === 'hero' && href === '#')) {
+          link.classList.add('active');
+        } else {
+          link.classList.remove('active');
+        }
+      });
+
+      // Update mobile drawer active link
+      document.querySelectorAll('.mobile-nav-link').forEach(link => {
+        const href = link.getAttribute('href');
+        if (href === `#${currentActiveId}` || (currentActiveId === 'hero' && href === '#')) {
+          link.classList.add('text-wine-800', 'font-bold');
+          link.classList.remove('text-coffee-900');
+        } else {
+          link.classList.remove('text-wine-800', 'font-bold');
+          link.classList.add('text-coffee-900');
+        }
+      });
+    }
+
+    window.addEventListener('scroll', updateActiveNavIndicator, { passive: true });
+    window.addEventListener('resize', updateActiveNavIndicator);
+    document.addEventListener('DOMContentLoaded', updateActiveNavIndicator);
+    updateActiveNavIndicator();
+
+    // Smooth scroll for nav anchor links with header compensation
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        const targetId = this.getAttribute('href');
+        if (targetId && targetId !== '#') {
+          const target = document.querySelector(targetId);
+          if (target) {
+            e.preventDefault();
+            const headerHeight = 76;
+            const targetPos = target.getBoundingClientRect().top + window.pageYOffset - headerHeight;
+            window.scrollTo({
+              top: Math.max(0, targetPos),
+              behavior: 'smooth'
+            });
+            setTimeout(updateActiveNavIndicator, 250);
+          }
+        } else if (targetId === '#') {
+          e.preventDefault();
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+          setTimeout(updateActiveNavIndicator, 250);
+        }
+      });
+    });
+  </script>
+</body>
+</html>
